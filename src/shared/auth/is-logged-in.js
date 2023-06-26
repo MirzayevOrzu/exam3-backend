@@ -11,15 +11,15 @@ const config = require('../config');
 const isLoggedIn = (req, res, next) => {
   try {
     const { authorization: token } = req.headers;
-
+   console.log(token);
     if (!token) {
       return res.status(401).json({
-        error: 'Login qilmagansiz.',
+        error: 'Login qilmagansiz!.',
       });
     }
 
     const decoded = jwt.verify(token, config.jwt.secret);
-
+   console.log(decoded);
     req.user = { id: decoded.id, role: decoded.role };
 
     next();
